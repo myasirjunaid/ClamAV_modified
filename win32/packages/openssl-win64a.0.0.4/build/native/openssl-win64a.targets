@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <!-- general -->
+    <ItemDefinitionGroup>
+        <ClCompile>
+            <!-- MSBuildThisFileDirectory is relative to this file in installed nuget package path. 
+                 Probably like projdir\packages\openssl-win64a.0.0.2 -->
+            <AdditionalIncludeDirectories>$(MSBuildThisFileDirectory)include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+        </ClCompile>
+        <Link>
+            <AdditionalLibraryDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+                $(MSBuildThisFileDirectory)bin\VC-WIN64A-debug\;%(AdditionalLibraryDirectories)
+            </AdditionalLibraryDirectories>
+            <AdditionalLibraryDirectories Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+                $(MSBuildThisFileDirectory)bin\VC-WIN64A-release\;%(AdditionalLibraryDirectories)
+            </AdditionalLibraryDirectories>
+            <AdditionalLibraryDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+                $(MSBuildThisFileDirectory)bin\VC-WIN32-debug\;%(AdditionalLibraryDirectories)
+            </AdditionalLibraryDirectories>
+            <AdditionalLibraryDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+                $(MSBuildThisFileDirectory)bin\VC-WIN32-release\;%(AdditionalLibraryDirectories)
+            </AdditionalLibraryDirectories>
+        </Link>
+    </ItemDefinitionGroup>
+
+    <!-- static libraries -->
+    <ItemDefinitionGroup>
+        <Link>
+            <AdditionalDependencies>libssl.lib;libcrypto.lib;%(AdditionalDependencies)</AdditionalDependencies>
+        </Link>
+    </ItemDefinitionGroup>
+
+    <!-- dynamic libraries -->
+    <Target 
+        Condition="'$(Configuration)|$(Platform)'=='Debug|x64'"
+        Name="openssl-win64a-VC-WIN64A-debug_AfterBuild"
+        AfterTargets="AfterBuild"
+    >
+        <Copy SourceFiles="$(MSBuildThisFileDirectory)bin\VC-WIN64A-debug\libssl-1_1-x64.dll" DestinationFiles="$(TargetDir)libssl-1_1-x64.dll" SkipUnchangedFiles="true" />
+        <Copy SourceFiles="$(MSBuildThisFileDirectory)bin\VC-WIN64A-debug\libcrypto-1_1-x64.dll" DestinationFiles="$(TargetDir)libcrypto-1_1-x64.dll" SkipUnchangedFiles="true" />
+        <Copy SourceFiles="$(MSBuildThisFileDirectory)bin\VC-WIN64A-debug\libssl-1_1-x64.pdb" DestinationFiles="$(TargetDir)libssl-1_1-x64.pdb" SkipUnchangedFiles="true" />
+        <Copy SourceFiles="$(MSBuildThisFileDirectory)bin\VC-WIN64A-debug\libcrypto-1_1-x64.pdb" DestinationFiles="$(TargetDir)libcrypto-1_1-x64.pdb" SkipUnchangedFiles="true" />
+    </Target>
+    <Target 
+        Condition="'$(Configuration)|$(Platform)'=='Release|x64'"
+        Name="openssl-win64a-VC-WIN64A-release_AfterBuild"
+        AfterTargets="AfterBuild"
+    >
+        <Copy SourceFiles="$(MSBuildThisFileDirectory)bin\VC-WIN64A-release\libssl-1_1-x64.dll" DestinationFiles="$(TargetDir)libssl-1_1-x64.dll" SkipUnchangedFiles="true" />
+        <Copy SourceFiles="$(MSBuildThisFileDirectory)bin\VC-WIN64A-release\libcrypto-1_1-x64.dll" DestinationFiles="$(TargetDir)libcrypto-1_1-x64.dll" SkipUnchangedFiles="true" />
+        <Copy SourceFiles="$(MSBuildThisFileDirectory)bin\VC-WIN64A-release\libssl-1_1-x64.pdb" DestinationFiles="$(TargetDir)libssl-1_1-x64.pdb" SkipUnchangedFiles="true" />
+        <Copy SourceFiles="$(MSBuildThisFileDirectory)bin\VC-WIN64A-release\libcrypto-1_1-x64.pdb" DestinationFiles="$(TargetDir)libcrypto-1_1-x64.pdb" SkipUnchangedFiles="true" />
+    </Target>
+    <Target 
+        Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'"
+        Name="openssl-win64a-VC-WIN32-debug_AfterBuild"
+        AfterTargets="AfterBuild"
+    >
+        <Copy SourceFiles="$(MSBuildThisFileDirectory)bin\VC-WIN32-debug\libssl-1_1.dll" DestinationFiles="$(TargetDir)libssl-1_1.dll" SkipUnchangedFiles="true" />
+        <Copy SourceFiles="$(MSBuildThisFileDirectory)bin\VC-WIN32-debug\libcrypto-1_1.dll" DestinationFiles="$(TargetDir)libcrypto-1_1.dll" SkipUnchangedFiles="true" />
+        <Copy SourceFiles="$(MSBuildThisFileDirectory)bin\VC-WIN32-debug\libssl-1_1.pdb" DestinationFiles="$(TargetDir)libssl-1_1.pdb" SkipUnchangedFiles="true" />
+        <Copy SourceFiles="$(MSBuildThisFileDirectory)bin\VC-WIN32-debug\libcrypto-1_1.pdb" DestinationFiles="$(TargetDir)libcrypto-1_1.pdb" SkipUnchangedFiles="true" />
+    </Target>
+    <Target 
+        Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"
+        Name="openssl-win64a-VC-WIN32-release_AfterBuild"
+        AfterTargets="AfterBuild"
+    >
+        <Copy SourceFiles="$(MSBuildThisFileDirectory)bin\VC-WIN32-release\libssl-1_1.dll" DestinationFiles="$(TargetDir)libssl-1_1.dll" SkipUnchangedFiles="true" />
+        <Copy SourceFiles="$(MSBuildThisFileDirectory)bin\VC-WIN32-release\libcrypto-1_1.dll" DestinationFiles="$(TargetDir)libcrypto-1_1.dll" SkipUnchangedFiles="true" />
+        <Copy SourceFiles="$(MSBuildThisFileDirectory)bin\VC-WIN32-release\libssl-1_1.pdb" DestinationFiles="$(TargetDir)libssl-1_1.pdb" SkipUnchangedFiles="true" />
+        <Copy SourceFiles="$(MSBuildThisFileDirectory)bin\VC-WIN32-release\libcrypto-1_1.pdb" DestinationFiles="$(TargetDir)libcrypto-1_1.pdb" SkipUnchangedFiles="true" />
+    </Target>
+</Project>

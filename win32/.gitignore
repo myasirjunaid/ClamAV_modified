@@ -1,0 +1,15 @@
+!platform.h
+!clamav-config.h
+build/*
+*.ncb
+*.suo
+*.sdf
+*.opensdf
+*.user
+*/Debug/*
+*/Release/*
+ipch
+ClamAV.VC.db
+Debug
+Release
+.vs

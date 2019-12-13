@@ -1,0 +1,50 @@
+/*
+	USBVirusScan
+	Source code put in public domain by Didier Stevens, no Copyright
+	https://DidierStevens.com
+	Use at your own risk
+
+	History:
+	2008/07/01: version 1.7.0.0
+*/
+
+#include "USBVirusScan.h"
+
+VS_VERSION_INFO VERSIONINFO
+FILEVERSION VERSION_NUMBER
+PRODUCTVERSION VERSION_NUMBER
+FILEOS VOS__WINDOWS32
+FILETYPE VFT_APP
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "00000000"
+        BEGIN
+            VALUE "CompanyName", "Didier Stevens (https://DidierStevens.com)" "\000"
+            VALUE "FileDescription", "Utility to start your AV (or any other program)\015\012when a USB drive is inserted.\015\012\015\012Use at your own risk." "\000"
+            VALUE "FileVersion", VERSION_STRING "\000"
+            VALUE "LegalCopyright", "Public domain" "\000"
+            VALUE "OriginalFilename", "USBVirusScan.exe" "\000"
+            VALUE "ProductName", "USBVirusScan" "\000"
+            VALUE "ProductVersion", VERSION_STRING "\000"
+            VALUE "Comments", "Utility to start your AV (or any other program)\015\012when a USB drive is inserted.\015\012\015\012Use at your own risk." "\000"
+        END
+    END
+
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x0000 0x0000
+    END
+END
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_MY_ICON           ICON                    "USBVirusScan.ico"
+
+#define MANIFEST_RESOURCE_ID 1
+MANIFEST_RESOURCE_ID RT_MANIFEST "USBVirusScan.exe.manifest"
